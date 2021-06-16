@@ -271,4 +271,32 @@ public class PacmanBoardTest {
                     board.getEntry(new Position(0, 0)));
         }
     }
+
+    @Test
+    public void equalsTrueTest() {
+        boolean expected = true;
+        PacmanBoard pacmanBoard1 = new PacmanBoard(5,5);
+        PacmanBoard pacmanBoard2 = new PacmanBoard(5,5);
+        Position position1 = new Position(0,0);
+        Position position2 = new Position(0,1);
+        pacmanBoard1.setEntry(position1, BoardItem.PACMAN_SPAWN);
+        pacmanBoard1.setEntry(position2, BoardItem.BIG_DOT);
+        pacmanBoard2.setEntry(position1, BoardItem.PACMAN_SPAWN);
+        pacmanBoard2.setEntry(position2, BoardItem.BIG_DOT);
+        Assert.assertEquals(expected, pacmanBoard1.equals(pacmanBoard2));
+    }
+
+    @Test
+    public void equalsFalseTest() {
+        boolean expected = false;
+        PacmanBoard pacmanBoard1 = new PacmanBoard(5,5);
+        PacmanBoard pacmanBoard2 = new PacmanBoard(4,3);
+        Position position1 = new Position(0,0);
+        Position position2 = new Position(0,1);
+        pacmanBoard1.setEntry(position1, BoardItem.PACMAN_SPAWN);
+        pacmanBoard1.setEntry(position2, BoardItem.BIG_DOT);
+        pacmanBoard2.setEntry(position1, BoardItem.PACMAN_SPAWN);
+        pacmanBoard2.setEntry(position2, BoardItem.BIG_DOT);
+        Assert.assertEquals(expected, pacmanBoard1.equals(pacmanBoard2));
+    }
 }

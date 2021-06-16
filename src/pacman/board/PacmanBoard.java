@@ -227,4 +227,21 @@ public class PacmanBoard {
             }
         }
     }
+
+    /**
+     * Checks if another object instance is equal to this instance.
+     * Boards are equal if they have the same dimensions (width, height)
+     * and have equal items for all board positions.
+     * @param o - Object to be compared to
+     * @return - true if same, false otherwise.
+     */
+    @Override
+    public boolean equals(Object o) {
+        if (!(o instanceof PacmanBoard)) {
+            return false;
+        }
+        PacmanBoard pacmanBoard = (PacmanBoard) o;
+        return (this.getHeight() == pacmanBoard.getHeight())
+                && (this.getWidth() == pacmanBoard.getWidth());
+    }
 }
