@@ -2,6 +2,10 @@ package pacman.board;
 
 import pacman.util.Position;
 
+import java.util.Arrays;
+import java.util.Objects;
+import java.util.StringJoiner;
+
 /**
  * Represents the Pac Man game board.
  * The board can be any size,
@@ -243,5 +247,42 @@ public class PacmanBoard {
         PacmanBoard pacmanBoard = (PacmanBoard) o;
         return (this.getHeight() == pacmanBoard.getHeight())
                 && (this.getWidth() == pacmanBoard.getWidth());
+    }
+
+    /**
+     * For two objects that are equal the hash should also be equal.
+     * For two objects that are not equal the hash does not have to be different.
+     * @return hash of PacmanBoard.
+     */
+    @Override
+    public int hashCode() {
+        return Objects.hash(width, height);
+    }
+
+    /**
+     * Creates a multiline string ( using System.lineSeparator() as newline )
+     * that is a printout of each index of the board with the character key.
+     * Example of a board with height 3 width 4.
+     *
+     *      XXXX
+     *      X00X
+     *      XXXX
+     *
+     * Note: the lines are not indented but may show in the JavaDoc as such.
+     * There are no spaces. The last line does not have a newline.
+     * @return board as a multiline string.
+     */
+    @Override
+    public String toString() {
+        StringJoiner joiner = new StringJoiner(System.lineSeparator());
+        for (int y = 0; y < height; y++) {
+            StringBuilder rowBuilder = new StringBuilder();
+
+            for (int x = 0; x < width; x++) {
+                rowBuilder.append(getEntry(new Position(x, y)).getChar());
+            }
+            joiner.add(rowBuilder.toString());
+        }
+        return joiner.toString();
     }
 }

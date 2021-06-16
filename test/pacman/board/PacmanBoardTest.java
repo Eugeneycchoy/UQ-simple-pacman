@@ -299,4 +299,19 @@ public class PacmanBoardTest {
         pacmanBoard2.setEntry(position2, BoardItem.BIG_DOT);
         Assert.assertEquals(expected, pacmanBoard1.equals(pacmanBoard2));
     }
+
+    @Test
+    public void hashCodeEqualTest() {
+        PacmanBoard pacmanBoard1 = new PacmanBoard(5,5);
+        PacmanBoard pacmanBoard2 = new PacmanBoard(5,5);
+        int expected = pacmanBoard1.hashCode();
+        Assert.assertEquals(expected, pacmanBoard2.hashCode());
+    }
+
+    @Test
+    public void toStringTest() {
+        PacmanBoard pacmanBoard1 = new PacmanBoard(4,3);
+        String expected = "XXXX\nX00X\nXXXX";
+        Assert.assertEquals(expected, pacmanBoard1.toString());
+    }
 }
