@@ -1,0 +1,37 @@
+package pacman.hunter;
+import org.junit.Test;
+import org.junit.Before;
+import org.junit.After;
+import static org.junit.Assert.*;
+
+public class HungryTest {
+
+    Hunter hungry1;
+
+    @Before
+    public void setup() {
+        hungry1 = new Hungry();
+    }
+
+    @After
+    public void tearDown() {
+        hungry1 = null;
+    }
+
+    @Test
+    public void hungryConstructorSpecialAvailableTest() {
+        // specialAvailable should be initialised as true
+        boolean expected = true;
+        assertEquals("specialAvailable should be initialised as true",
+                expected, hungry1.specialAvailable);
+    }
+
+    @Test
+    public void hungryConstructorSpecialActiveTest() {
+        // isSpecialActive() should return false
+        boolean expected = false;
+        assertEquals("specialActive should be initialised as true",
+                expected, hungry1.isSpecialActive());
+    }
+
+}
