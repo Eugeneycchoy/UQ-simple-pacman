@@ -81,4 +81,11 @@ public class PositionTest {
         assertEquals("hashCode() was not implemented correctly",
                 position3.hashCode(), position4.hashCode());
     }
+
+    @Test
+    public void toStringTest() {
+        String expected = "1,1";
+        assertEquals("toString() was not implemented correctly",
+                expected, position1.toString());
+    }
 }

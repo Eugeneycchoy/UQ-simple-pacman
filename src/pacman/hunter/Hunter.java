@@ -146,7 +146,7 @@ public class Hunter extends Entity {
     @Override
     public void move(PacmanGame game) {
         // targetPos is one position forward where the hunter is facing
-        Position targetPos = this.getPosition().add(this.getDirection().offset().multiply(1));
+        Position targetPos = this.getPosition().add(this.getDirection().offset());
         BoardItem boardItem;
         try {
             boardItem = game.getBoard().eatDot(targetPos);

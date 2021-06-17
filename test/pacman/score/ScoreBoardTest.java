@@ -150,4 +150,44 @@ public class ScoreBoardTest {
                 expected, scoreBoard1.getScore());
     }
 
+    @Test
+    public void equalTrueTest() {
+        ScoreBoard scoreBoard1 = new ScoreBoard();
+        scoreBoard1.setScore("Eugene", 100);
+
+        ScoreBoard scoreBoard2 = new ScoreBoard();
+        scoreBoard2.setScore("Eugene", 100);
+
+        boolean expected = true;
+        assertEquals("equals(Object o) doesn't return true",
+                expected, scoreBoard1.equals(scoreBoard2));
+
+    }
+
+    @Test
+    public void equalFalseTest() {
+        ScoreBoard scoreBoard1 = new ScoreBoard();
+        scoreBoard1.setScore("Eugene", 100);
+
+        ScoreBoard scoreBoard2 = new ScoreBoard();
+        scoreBoard2.setScore("Noobmaster69", 100);
+
+        boolean expected = false;
+        assertEquals("equals(Object o) doesn't return false",
+                expected, scoreBoard1.equals(scoreBoard2));
+    }
+
+    @Test
+    public void hashCodeTest() {
+        ScoreBoard scoreBoard1 = new ScoreBoard();
+        scoreBoard1.setScore("Eugene", 100);
+
+        ScoreBoard scoreBoard2 = new ScoreBoard();
+        scoreBoard2.setScore("Eugene", 100);
+
+        boolean expected = true;
+        assertEquals("hashCode() was not implemented correctly",
+                expected, scoreBoard1.hashCode() == scoreBoard2.hashCode());
+    }
+
 }

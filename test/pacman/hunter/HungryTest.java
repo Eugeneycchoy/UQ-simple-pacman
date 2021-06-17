@@ -2,6 +2,9 @@ package pacman.hunter;
 import org.junit.Test;
 import org.junit.Before;
 import org.junit.After;
+import pacman.util.Direction;
+import pacman.util.Position;
+
 import static org.junit.Assert.*;
 
 public class HungryTest {
@@ -32,6 +35,16 @@ public class HungryTest {
         boolean expected = false;
         assertEquals("specialActive should be initialised as true",
                 expected, hungry1.isSpecialActive());
+    }
+
+    @Test
+    public void toStringTest() {
+        String expected = "4,5,LEFT,12,HUNGRY";
+        hungry1.setPosition(new Position(4,5));
+        hungry1.setDirection(Direction.LEFT);
+        hungry1.specialDurationTicks = 12;
+        assertEquals("toString() was not implemented correctly",
+                expected, hungry1.toString());
     }
 
 }

@@ -1,9 +1,6 @@
 package pacman.score;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.TreeMap;
+import java.util.*;
 
 /**
  * ScoreBoard contains previous scores and
@@ -162,6 +159,34 @@ public class ScoreBoard {
      */
     public void reset() {
         this.currentOverallScore = 0;
+    }
+
+    /**
+     * Checks if another object instance is equal to this ScoreBoard.
+     * ScoreBoards are equal if the current scores are equal and all
+     * score entries are equal (both names and score values).
+     * @param o - object to compare to
+     * @return true if same, false otherwise.
+     */
+    @Override
+    public boolean equals(Object o) {
+        if (!(o instanceof ScoreBoard)) {
+            return false;
+        }
+        ScoreBoard otherScoreBoard = (ScoreBoard) o;
+        return (this.getScore() == otherScoreBoard.getScore())
+                && (this.getEntriesByName().equals(otherScoreBoard.getEntriesByName()))
+                && (this.getEntriesByScore().equals(otherScoreBoard.getEntriesByScore()));
+    }
+
+    /**
+     * For two objects that are equal the hash should also be equal.
+     * For two objects that are not equal the hash does not have to be different.
+     * @return hash of the ScoreBoard.
+     */
+    @Override
+    public int hashCode() {
+        return Objects.hash(currentOverallScore, getEntriesByName(), getEntriesByScore());
     }
 
     /**

@@ -3,6 +3,8 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.junit.Before;
 import org.junit.After;
+import pacman.board.PacmanBoard;
+import pacman.game.PacmanGame;
 import pacman.ghost.Blinky;
 import pacman.ghost.Ghost;
 import pacman.ghost.Phase;
@@ -23,6 +25,9 @@ public class HunterTest {
 
     Ghost ghost1;
 
+    PacmanBoard pacmanBoard;
+    PacmanGame pacmanGame;
+
     @Before
     public void setup() {
         defaultHunter = new Hunter();
@@ -42,6 +47,9 @@ public class HunterTest {
         hunterSpecialAvailable.specialAvailable = true;
 
         ghost1 = new Blinky();
+
+        pacmanBoard = new PacmanBoard(3,3);
+        pacmanGame = new PacmanGame("My game", "Eugene", defaultHunter, pacmanBoard);
     }
 
     @After
@@ -257,5 +265,73 @@ public class HunterTest {
         originalHunter.reset();
         assertEquals("Direction was not reset back to UP",
                 expected, originalHunter.getDirection());
+    }
+
+    @Test
+    public void testMove() {
+        PacmanGame game = new PacmanGame("title", "author",
+                new Hunter(), new PacmanBoard(10, 15));
+
+        Hunter hunter = new Hunter();
+        hunter.setPosition(new Position(5, 7));
+        hunter.setDirection(Direction.DOWN);
+        hunter.move(game);
+        assertEquals(new Position(5,8), hunter.getPosition());
+
+        hunter.setDirection((Direction.LEFT));
+        hunter.move(game);
+        assertEquals(new Position(4,8), hunter.getPosition());
+
+        hunter.setDirection(Direction.RIGHT);
+        hunter.move(game);
+        assertEquals(new Position(5, 8), hunter.getPosition());
+
+        hunter.setDirection(Direction.UP);
+        hunter.move(game);
+        assertEquals(new Position(5, 7), hunter.getPosition());
+    }
+
+    @Test
+    public void equalsTrueTest() {
+        boolean expected = true;
+        Hunter hunter1 = new Hunter();
+        assertEquals("equals(Object o) was not implemented correctly",
+                expected, hunter1.equals(defaultHunter));
+    }
+
+    @Test
+    public void equalsFalseTest() {
+        boolean expected = false;
+        Hunter hunter1 = new Hunter();
+        hunter1.isDead = true;
+        assertEquals("equals(Object o) was not implemented correctly",
+                expected, hunter1.equals(defaultHunter));
+    }
+
+    @Test
+    public void hashCodeTrueTest() {
+        Hunter hunter1 = new Hunter();
+        int expected = hunter1.hashCode();
+        assertEquals("hunter1 and defaultHunter should have the same hashCode()",
+                expected, defaultHunter.hashCode());
+    }
+
+    @Test
+    public void hashCodeFalseTest() {
+        boolean expected = false;
+        Hunter hunter1 = new Hunter();
+        hunter1.isDead = true;
+        assertEquals("hunter1 and defaultHunter should not have the same hashCode()",
+                expected, defaultHunter.hashCode() == hunter1.hashCode());
+    }
+
+    @Test
+    public void toStringTest() {
+        String expected = "4,5,LEFT,12";
+        defaultHunter.setPosition(new Position(4,5));
+        defaultHunter.setDirection(Direction.LEFT);
+        defaultHunter.specialDurationTicks = 12;
+        assertEquals("toString() was not implemented correctly",
+                expected, defaultHunter.toString());
     }
 }

@@ -84,4 +84,14 @@ public class Position {
     public int hashCode() {
         return Objects.hash(x, y);
     }
+
+    /**
+     * Returns a comma-seperated string representation of a Position.
+     * Format: "x,y" Example: "3,4"
+     * @return "x,y"
+     */
+    @Override
+    public String toString() {
+        return "" + getX() + "," + getY();
+    }
 }

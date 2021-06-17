@@ -114,6 +114,6 @@ public abstract class Entity implements Moveable {
                 + ","
                 + getPosition().getY()
                 + ","
-                + getDirection().name();
+                + getDirection().name().toUpperCase();
     }
 }
