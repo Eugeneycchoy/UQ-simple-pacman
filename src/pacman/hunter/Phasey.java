@@ -40,4 +40,20 @@ public class Phasey extends Hunter {
             super.hit(ghost);
         }
     }
+
+    /**
+     * Represents this Phasey in a comma-seperated string format.
+     * Format is: "x,y,DIRECTION,specialDuration,PHASEY".
+     * DIRECTION is the uppercase enum type value. Example:
+     * "4,5,LEFT,12,PHASEY"
+     * @return
+     */
+    @Override
+    public String toString() {
+        return "" + this.getPosition().getX() +
+                "," + this.getPosition().getY() +
+                "," + this.getDirection().name().toUpperCase() +
+                "," + this.getSpecialDurationRemaining() +
+                "," + this.getClass().getSimpleName().toUpperCase();
+    }
 }

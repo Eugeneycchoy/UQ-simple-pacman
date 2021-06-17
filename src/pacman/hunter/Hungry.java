@@ -35,4 +35,19 @@ public class Hungry extends Hunter {
             super.hit(ghost);
         }
     }
+
+    /**
+     * Represents this Hungry in a comma-seperated string format.
+     * Format is: "x,y,DIRECTION,specialDuration,HUNGRY".
+     * DIRECTION is the uppercase enum type value. Example: "4,5,LEFT,12,HUNGRY"
+     * @return "x,y,DIRECTION,specialDuration,HUNGRY"
+     */
+    @Override
+    public String toString() {
+        return "" + this.getPosition().getX() +
+                "," + this.getPosition().getY() +
+                "," + this.getDirection().name().toUpperCase() +
+                "," + this.getSpecialDurationRemaining() +
+                "," + this.getClass().getSimpleName().toUpperCase();
+    }
 }

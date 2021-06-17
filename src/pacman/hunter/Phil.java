@@ -29,4 +29,20 @@ public class Phil extends Hunter {
     public boolean isSpecialActive() {
         return false;
     }
+
+    /**
+     * Represents this Phil in a comma-seperated string format.
+     * Format is: "x,y,DIRECTION,specialDuration,PHIL".
+     * DIRECTION is the uppercase enum type value.
+     * Example: "4,5,LEFT,12,PHIL"
+     * @return
+     */
+    @Override
+    public String toString() {
+        return "" + this.getPosition().getX() +
+                "," + this.getPosition().getY() +
+                "," + this.getDirection().name().toUpperCase() +
+                "," + this.getSpecialDurationRemaining() +
+                "," + this.getClass().getSimpleName().toUpperCase();
+    }
 }
