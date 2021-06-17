@@ -29,4 +29,11 @@ public interface Moveable {
      * Gets the direction that this Moveable is facing.
      */
     Direction getDirection();
+
+    /**
+     * Moves the Movable object using information provided in the PacmanGame.
+     * @param game - information needed to decide movement.
+     * @requires - game != null.
+     */
+    void move(PacmanGame game);
 }

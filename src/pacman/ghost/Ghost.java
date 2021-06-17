@@ -2,6 +2,7 @@ package pacman.ghost;
 
 import pacman.game.Entity;
 import pacman.game.Moveable;
+import pacman.game.PacmanGame;
 import pacman.util.Direction;
 import pacman.util.Position;
 
@@ -81,6 +82,32 @@ public abstract class Ghost extends Entity implements Moveable {
      * @return this ghosts type.
      */
     public abstract GhostType getType();
+
+    /**
+     * Move advances the ghost in a direction by one point on the board. The direction this move is made is done as follows:
+     * - Decrease the phase duration by 1, and if the duration is now zero, then move to the next phase.
+     * - Get the target position. If the phase is CHASE, then get the chaseTarget.
+     *   If the phase is SCATTER, then the position is the ghost's home position.
+     *   If the phase is FRIGHTENED, then choose a target position with coordinates given by:
+     *   targetPositionX = (x*24 mod (2 * board width )) - board width,
+     *   targetPositionY = (y*36 mod (2 * board height)) - board height
+     *   where x and y are the current coordinates of the ghost.
+     * - Choose the direction that the current Ghost position when moved 1 step
+     *   has the smallest euclidean distance to the target position.
+     *   The board item in the move position must be pathable for it to be chosen.
+     *   The chosen direction cannot be opposite to the current direction.
+     *   If multiple directions have the same shortest distance,
+     *   then choose the direction in the order UP, LEFT, DOWN, RIGHT
+     * - Set the direction of the Ghost to the chosen direction.
+     * - Set the position of this Ghost to be one forward step in the chosen direction.
+     * Note: The next phase after CHASE is SCATTER.
+     * Note: The next phase after FRIGHTENED or SCATTER is CHASE.
+     * Note: All positions outside the board are to be treated as if they are not pathable.
+     * @param game - information needed to decide movement.
+     */
+    public void move(PacmanGame game) {
+
+    }
 
     /**
      * Kills this ghost by setting its status to isDead.

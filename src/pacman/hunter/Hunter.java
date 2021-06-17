@@ -1,6 +1,7 @@
 package pacman.hunter;
 
 import pacman.game.Entity;
+import pacman.game.PacmanGame;
 import pacman.ghost.Ghost;
 import pacman.ghost.Phase;
 import pacman.util.Direction;
@@ -121,5 +122,10 @@ public class Hunter extends Entity {
         this.specialDurationTicks = 0;
         this.setDirection(Direction.UP);
         this.setPosition(new Position(0,0));
+    }
+
+    @Override
+    public void move(PacmanGame game) {
+
     }
 }

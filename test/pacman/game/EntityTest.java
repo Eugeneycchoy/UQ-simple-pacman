@@ -2,6 +2,8 @@ package pacman.game;
 import org.junit.After;
 import org.junit.Test;
 import org.junit.Before;
+import pacman.ghost.Blinky;
+import pacman.hunter.Hunter;
 import pacman.util.Direction;
 import pacman.util.Position;
 
@@ -16,10 +18,12 @@ public class EntityTest {
 
     @Before
     public void setup() {
-        entity1 = new Entity();
+        entity1 = new Hunter();
 
         position1 = new Position(0, 1);
-        entity2 = new Entity(position1, Direction.DOWN);
+        entity2 = new Hunter();
+        entity2.setPosition(position1);
+        entity2.setDirection(Direction.DOWN);
     }
 
     @After
@@ -58,4 +62,29 @@ public class EntityTest {
                 expected, entity2.getDirection());
     }
 
+    @Test
+    public void equalTest() {
+        boolean expected = false; // entity1 and entity2 have different positions and directions
+        assertEquals("equals() was not implemented correctly",
+                expected, entity1.equals(entity2));
+    }
+
+    @Test
+    public void hashCodeTest() {
+        Entity entity3 = new Hunter();
+        Entity entity4 = new Blinky();
+        boolean expected = true; // entity3 and entity4 should be equal
+        assertEquals("hashCode() or equals() was not implemented correctly",
+                expected, entity3.hashCode() == entity4.hashCode());
+    }
+
+    @Test
+    public void toStringTest() {
+        Entity entity3 = new Hunter();
+        entity3.setPosition(new Position(4,5));
+        entity3.setDirection(Direction.LEFT);
+        String expected = "4,5,LEFT";
+        assertEquals("toString() was not implemented correctly",
+                expected, entity3.toString());
+    }
 }
