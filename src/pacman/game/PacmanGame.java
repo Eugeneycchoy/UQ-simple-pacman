@@ -25,9 +25,9 @@ public class PacmanGame {
     private Hunter hunter;
     private PacmanBoard board;
     private List<Ghost> ghosts = new ArrayList<>();
-    private int ticks;
-    private ScoreBoard scoreBoard;
-    private int level;
+    private int ticks = 0;
+    private ScoreBoard scoreBoard = new ScoreBoard();
+    private int level = 0;
     private int lives = DEFAULT_LIVES;
 
     /**
@@ -100,10 +100,10 @@ public class PacmanGame {
 
     /**
      * Sets the level of the game.
-     * @param Level - to be set to.
+     * @param level - to be set to.
      * @ensures newLevel = max(0, givenLevel)
      */
-    public void setLevel(int Level) {
+    public void setLevel(int level) {
         this.level = Math.max(0, level);
     }
 
